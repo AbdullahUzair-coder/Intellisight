@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body,html{
+    height: 100%;
+    display: flex;  
+    background-color: #FAF7F2;  
+}
+.nav-bar {
+    position: fixed;
+    background-color: #1B3C53;
+    height: 100vh;
+    width: 260px;
+    
+}
+.nav-bar  .logo{
+    width: 259px;
+    margin-top: 10%;
+}
+.nav-bar .nav{
+    position: relative;
+    margin-left: 20%;
+}
+.nav-bar .icon{
+    top: 50%;
+    left: 32px;
+    transform: translateY(-5%);
+    font-size: 30px;
+    color: #FAF7F2;
+    
+}
+
