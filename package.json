@@ -1,0 +1,24 @@
+{
+  "name": "intellisight",
+  "version": "1.0.0",
+  "description": "This facial recognizition website that detect people and add its count,time and zone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdullahUzair-coder/Intellisight.git"
+  },
+  "author": "Ozair",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdullahUzair-coder/Intellisight/issues"
+  },
+  "homepage": "https://github.com/AbdullahUzair-coder/Intellisight#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
