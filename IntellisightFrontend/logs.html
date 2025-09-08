@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./logs.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <title>Document</title>
+    <title>Logs</title>
 
 </head>
 <body>
@@ -42,3 +43,78 @@
             </div>
     </div>
     <!-- navbar ends here -->
+
+    <!-- main content starts here -->
+<div class="right">
+    <div class="top-bar">
+        <h1> Activity Logs</h1>
+        <select>
+            <option> Select </option>
+            <option> Today </option>
+            <option> Weekly </option>
+            <option> Monthly </option>
+        </select>
+    </div>
+    <div class="filters">
+    <select>
+        <option>User Type</option>
+        <option>Student</option>
+        <option>Teacher</option>
+        <option>Unidentified</option>
+    </select>
+
+    <select>
+        <option>Zone Type</option>
+        <option>Zone 1</option>
+        <option>Zone 2</option>
+        <option>Zone 3</option>
+    </select>
+
+    <div class="search">
+        <input type="number" placeholder="Search by ID" >
+        <i class="fa-solid fa-search"></i>
+    </div>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Role</th>
+                <th>Zone</th>
+                <th>Entry Time</th>
+                <th>Exit Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page">
+        <span>page 1/2</span>
+        <button>&lt;</button>
+        <button>&gt;</button>
+    </div> 
+</div>
+</body>
+</html>
