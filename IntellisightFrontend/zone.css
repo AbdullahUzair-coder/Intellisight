@@ -2,6 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     
 }
 body,html{
@@ -102,9 +109,93 @@ body,html{
 
 /* navigation bar ends */
 
+/* main content starts */
+.right{
+    margin-left: 280px;
+    padding: 20px;
+    width: calc(100% - 280px);
+}
+.right .top-bar {
+    display: flex;
+    color:#1B3C53 ;    
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+.right .zone-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 80px;
+}
+.right .zone-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(420px, 500px));    gap: 20px;
+    gap: 20px;
+    justify-content: center;
+    /* margin-left: 80px; */
 
+}
 
+.right .zone-grid .zone-cards{
+    background: #D9D9D9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.20);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 500px;
+    width: 100%;
+}
 
+.right .zone-grid .zone-cards h3{
+    color: #1B3C53;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.right .zone-grid .zone-cards p{
+    color: #456882;
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+.right .zone-grid .zone-cards .zone-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.right .zone-grid .zone-cards .zone-buttons button{
+    
+    background: #456882;
+    border-style: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    color: #D9D9D9;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.right .zone-section .page{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    gap: 10px;
+    color:#456882;
+    font-size: 12px;
+}
+
+.right .zone-section .page button{
+    border: none;
+    
+    color: #132e42;
+    padding: 5px 1px;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
 /* navigation bar hover functions */
 .nav-bar .nav a:hover{
@@ -122,5 +213,12 @@ body,html{
 }
 .nav-bar .nav a.active{
     text-decoration: underline;
+}
+
+.right .zone-grid .zone-cards .zone-buttons button:hover{
+    background:#132e42;
+}
+.right .zone-section .page button:hover{
+    color: #456882;
 }
 /* end */
