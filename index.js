@@ -33,6 +33,27 @@ app.get("/auth/signup",(req,res)=>{
 app.get("/auth/forgotpassword",(req,res)=>{
     res.render("auth/forgotpassword");
 })
+
+app.get("/dashboard",(req,res)=>{
+    res.render("dashboard/dashboard");
+})
+
+app.get("/students",(req,res)=>{
+    res.render("students/student");
+})
+
+app.get("/teachers",(req,res)=>{
+    res.render("teachers/teachers");
+})
+
+app.get("/zones",(req,res)=>{
+    res.render("zones/zones");
+})
+
+app.get("/logs",(req,res)=>{
+    res.render("logs/logs");
+})
+
 app.listen(port,()=>{
     console.log(`Listening on port ${port}`);
 })
