@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/student.css">
+    <link rel="stylesheet" href="/css/logs.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <title>Students</title>
+    <title>Logs</title>
 
 </head>
 <body>
     <div class="nav-bar">        
         <img class="logo" src="/images/intellisight1.png" />
         <div class="nav">
-            <<div class="dashboard">
+            <div class="dashboard">
                 <i  class="fa-solid fa-house-user icon"></i>
                 <a href="/dashboard" > Dashboard </a>
             </div>
             <div class="students">
                 <i class="fa-solid fa-user-group icon"></i>
-                <a href="/students" class="active"> Students </a>
+                <a href="/students"> Students </a>
             </div>
             <div class="teachers">
                 <i class="fa-solid fa-graduation-cap icon"></i>
@@ -28,12 +28,12 @@
             </div>
             <div class="zones">
                 <i class="fa-solid fa-location-dot icon"></i>
-                <a href="/zones"> Zones </a>
+                <a href="/zones">   Zones </a>
             </div>
             <div class="logs">
                 <i class="fa-solid fa-bars icon"></i>
-                <a href="/logs"> Logs </a>
-            </div>        
+                <a href="/logs" class="active" > Logs </a>
+            </div>       
         </div>
             <div class="setting">
                 <a href="#"> <i class="fa-solid fa-gear icon"> </i> Settings  </a>                
@@ -44,10 +44,10 @@
     </div>
     <!-- navbar ends here -->
 
-<!-- main content starts here -->
+    <!-- main content starts here -->
 <div class="right">
     <div class="top-bar">
-        <h1> Students </h1>
+        <h1> Activity Logs</h1>
         <select>
             <option> Select </option>
             <option> Today </option>
@@ -55,15 +55,37 @@
             <option> Monthly </option>
         </select>
     </div>
+    <div class="filters">
+    <select>
+        <option>User Type</option>
+        <option>Student</option>
+        <option>Teacher</option>
+        <option>Unidentified</option>
+    </select>
 
+    <select>
+        <option>Zone Type</option>
+        <option>Zone 1</option>
+        <option>Zone 2</option>
+        <option>Zone 3</option>
+    </select>
+
+    <div class="search">
+        <input type="number" placeholder="Search by ID" >
+        <i class="fa-solid fa-search"></i>
+    </div>
+    </div>
     <div class="table">
         <table>
             <thead>
             <tr>
-                <th> ID </th>
-                <th> Entry Time </th>
-                <th> Exit Time </th>
-                <th> Zone </th>
+                <th>ID</th>
+                <th>User</th>
+                <th>Role</th>
+                <th>Zone</th>
+                <th>Entry Time</th>
+                <th>Exit Time</th>
+                <th>Status</th>
             </tr>
             </thead>
             <tbody>
@@ -72,8 +94,14 @@
                 <td> -- </td>
                 <td> -- </td>
                 <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
             </tr>
             <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
                 <td> -- </td>
                 <td> -- </td>
                 <td> -- </td>
@@ -90,4 +118,3 @@
 </div>
 </body>
 </html>
-<!-- main content ends here -->
