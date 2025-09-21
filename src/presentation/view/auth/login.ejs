@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Login</title>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <form action="/login" method="POST">
+        
+        <% if (typeof error !== "undefined") { %>
+          <div class="error-message"><%= error %></div>
+        <% } %>
+
+        <div class="email-block">
+          <i class="fa-solid fa-envelope icon"></i>
+          <input type="email"  id="Email" placeholder="Enter your email" name="email" class="<%= emailError ? 'input-error' : '' %>">
+        </div>
+
+        <div class="password-block">
+          <i class="fa-solid fa-key icon"></i>
+          <input type="password"  id="password" placeholder="Enter your password" name="password" class="<%= passwordError ? 'input-error' : '' %>">
+        </div>
+
+        <button type="submit" class="btn-login">LOGIN</button>
+      </form>
+
+      <div class="ank">
+        <a href="/auth/signup">Don't Have an account?</a>
+        <a href="/auth/forgotpassword">Forgot Password?</a>
+      </div>
+    </div>
+
+    <div class="right">
+      <h1>LOGIN</h1>
+      <img class="logo" src="/images/logoIS.png">
+    </div>
+  </div>
+</body>
+</html>
