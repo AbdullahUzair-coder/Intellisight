@@ -53,6 +53,19 @@ h1{
     font-size: 20px;
     transition: 0.3s;
 }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.left input.input-error {
+  box-shadow: 0 0 5px oklab(62.793% 0.22489 0.1258);
+  transition: all 0.3s ease-in-out;
+  animation: shake 0.3s ease;
+}
 .left input:focus{
     background-color: white;
 }
@@ -109,3 +122,6 @@ h1{
 .left .ank a:hover{
     text-decoration: underline;
 }
+.error-message {
+      color: red;
+    }

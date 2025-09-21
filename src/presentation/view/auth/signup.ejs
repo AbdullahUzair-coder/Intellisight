@@ -5,37 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>sign Up</title>
+    <title>Sign Up</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="left">
-            <div class="Name-block">
-                <i class="fa-solid fa-user icon"></i>
-                <input type="text" id="Name" placeholder="Enter your Name" >
-            </div>
-            <div class="email-block">
-                <i class="fa-solid fa-envelope icon"></i>
-                <input type="text" id="Email" placeholder="Enter your email" >
-            </div>
-            <div class="password-block">
-                <i class="fa-solid fa-key icon"></i>
-                <input type="password" id="password" placeholder="Enter your password" >
-            </div>
-            <div class="C-password-block">
-                <i class="fa-solid fa-key icon"></i>
-                <input type="password" id="C-password" placeholder="Confirm password" >
-            </div>
-            <button class="btn-Sign-up">Sign up</button>
+            <form id="signupForm" action="/register" method="POST">
+                <div class="Name-block">
+                    <i class="fa-solid fa-user icon"></i>
+                    <input type="text" name="name" id="Name" placeholder="Enter your Name" >
+                    <div class="error" id="nameError"></div>
+                </div>
+                <div class="email-block">
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <input type="email" name="email" id="Email" placeholder="Enter your email" >
+                    <div class="error" id="emailError"></div>
+                </div>
+                <div class="password-block">
+                    <i class="fa-solid fa-key icon"></i>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" >
+                    <div class="error" id="passwordError"></div>
+                </div>
+                <div class="C-password-block">
+                    <i class="fa-solid fa-key icon"></i>
+                    <input type="password" id="C-password" placeholder="Confirm password" >
+                    <div class="error" id="cpasswordError"></div>
+                </div>
+                <button type="submit" class="btn-Sign-up">Sign up</button>
+            </form>
             <div class="ank">
                 <a href="/auth/login">Have an account?</a>
             </div>
-            
         </div>
         <div class="right">
             <h1>SIGN UP</h1>
             <img class="logo" src="/images/IS12.png">
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById("signupForm");
+        
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // stop form from submitting first
+            let valid = true;
+
+            // get values
+            const name = document.getElementById("Name").value.trim();
+            const email = document.getElementById("Email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const cpassword = document.getElementById("C-password").value.trim();
+
+            // clear old errors
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("passwordError").textContent = "";
+            document.getElementById("cpasswordError").textContent = "";
+
+            // check empty fields
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Name is required.";
+                valid = false;
+            }
+            if (email === "") {
+                document.getElementById("emailError").textContent = "Email is required.";
+                valid = false;
+            }
+            if (password === "") {
+                document.getElementById("passwordError").textContent = "Password is required.";
+                valid = false;
+            }
+            if (cpassword === "") {
+                document.getElementById("cpasswordError").textContent = "Please confirm your password.";
+                valid = false;
+            }
+
+            // check password match
+            if (password !== "" && cpassword !== "" && password !== cpassword) {
+                document.getElementById("cpasswordError").textContent = "Passwords do not match.";
+                valid = false;
+            }
+
+            // if all good, submit form
+            if (valid) {
+                form.submit();
+            }
+        });
+    </script>
 </body>
 </html>
