@@ -3,10 +3,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import db from "./config/db.js";
-import { error } from "console";
+import bcrypt from "bcrypt";
+import { hash } from "crypto";
 
 const app = express();
 const port = process.env.PORT || 4000;
+const saltRounds = 10;
 //../a
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -44,11 +46,18 @@ app.post("/register",async (req,res)=>{
         if(checkResult.rows.length > 0 ){
         res.send("Email already exists . Try loggings in.");
         }else{
-            const result = await db.query("INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-                [name,email,password]
-            );
-            console.log(result);
-            res.render("auth/login",{ error: null, emailError: false, passwordError: false });
+            bcrypt.hash(password,saltRounds,async (err,hash)=>{
+                if(err){
+                    console.error("Error hashing password:", err);
+                }else{
+                    console.log("HashPassword",hash);
+                    const result = await db.query("INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
+                        [name,email,hash]
+                    );
+                    res.render("auth/login",{ error: null, emailError: false, passwordError: false });
+                }
+            });
+            
         }
 
         }catch(err){
@@ -58,7 +67,7 @@ app.post("/register",async (req,res)=>{
 
 app.post("/login",async (req,res)=>{
     let email = req.body.email;
-    let password = req.body.password
+    let loginpassword = req.body.password
     try{
         const result = await db.query("SELECT * from users where email = $1 ",
             [email]
@@ -67,17 +76,22 @@ app.post("/login",async (req,res)=>{
             console.log(result.rows);
             console.log(result.rows[0]);
             let user = result.rows[0];
-            let strongpassword = user.password;
-            if(password===strongpassword){
-                res.render("dashboard/dashboard");
-            }else{
-                res.render("auth/login",{
-                    error: "Incorrect email or password", 
-                    emailError: true, 
-                    passwordError: true
-                });
-            }
-
+            let stronghashpassword = user.password;
+            bcrypt.compare(loginpassword,stronghashpassword,(err,result)=>{
+                if (err) {
+                    console.error("Error comparing passwords:", err);
+                } else {
+                    if (result) {
+                        res.render("dashboard/dashboard");
+                    } else {
+                        res.render("auth/login",{
+                            error: "Incorrect email or password", 
+                            emailError: true, 
+                            passwordError: true
+                        });
+                    }
+                }
+            });
         }else{
             res.render("auth/login",{
                 error:"User not found",
