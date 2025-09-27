@@ -3,7 +3,7 @@ from simple_facerec import SimpleFacerec
 
 # Initialize Face Recognition
 sfr = SimpleFacerec()
-sfr.load_encoding_images("images/")  # load known faces from "images" folder
+sfr.load_encoding_images("images/")  # Load known faces from "images" folder
 
 # Open Camera (0 = default webcam / iVCam)
 cap = cv2.VideoCapture(0)
@@ -17,9 +17,13 @@ while True:
     face_locations, face_names = sfr.detect_known_faces(frame)
 
     for face_loc, name in zip(face_locations, face_names):
-        y1, x2, y2, x1 = face_loc  # correct order = top, right, bottom, left
+        y1, x2, y2, x1 = face_loc  # top, right, bottom, left
 
-        # Draw text (name) above rectangle
+        # If no match → force name to "Unknown"
+        if name == "":
+            name = "Unknown"
+
+        # Draw text (name or "Unknown") above rectangle
         cv2.putText(frame, name, (x1, y1 - 10),
                     cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 2)
 
