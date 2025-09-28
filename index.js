@@ -22,7 +22,6 @@ console.log(__dirname);
 app.set("view engine", "ejs");
 // Tell Express where your views folder is
 app.set("views", path.join(__dirname, "src/presentation/view"));
-
 app.use(express.static(path.join(__dirname, "src/presentation/public")));
 
 app.get("/", (req, res) => {
