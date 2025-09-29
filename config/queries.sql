@@ -1,5 +1,43 @@
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
+name VARCHAR(100),
 email VARCHAR(100) NOT NULL UNIQUE,
 password VARCHAR(100)
 )
+
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    roll_no VARCHAR(50) UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE teachers (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    department VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE zones (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE logs (
+    id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES students(id) ON DELETE CASCADE,
+    zone_id INT REFERENCES zones(id) ON DELETE CASCADE,
+    entry_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    exit_time TIMESTAMP
+);
+
+CREATE TABLE unidentified (
+    id SERIAL PRIMARY KEY,
+    detected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    zone_id INT REFERENCES zones(id) ON DELETE CASCADE,
+    image_url TEXT
+);
