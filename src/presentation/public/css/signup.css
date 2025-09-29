@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 body,html{
@@ -70,15 +71,24 @@ h1{
 .left input:focus{
     background-color: white;
 }
-.left input::placeholder{
+.left input::placeholder {
     color: #1B3C53;
     font-size: 20px;
+    /* transition: opacity 0.3s ease; */
 }
-/*.email-block input:focus{
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4)
-}*/
 
+.left input:focus::placeholder {
+    opacity: 0;
+}
+
+.toggle-eye {
+    position: absolute;
+    top: 50%;
+    left: 400px;
+    font-size: 24px;
+    color: #1b3c53a9;
+    cursor: pointer;
+}
 .left .icon {
     position: absolute;
     top: 50%;
