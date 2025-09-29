@@ -14,32 +14,38 @@ body,html{
 /* navigation bar starts */
 .nav-bar {
     position: fixed;
-    margin: 0%;
+    top: 0;
+    left: 0;
     background-color: #1B3C53;
     height: 100vh;
     width: 260px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
+    justify-content: flex-start;
+    padding: 20px 12px;
+    box-sizing: border-box;
 }
 .nav-bar  .logo{
-    width: 259px;
-    margin-top: 10%;
+    width: 240px;
+    
+    margin-bottom: 10px;
     
 }
 .nav-bar .nav{
-    position: relative;
-    margin-left: 10%;
-    margin-bottom: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-left: 8px;
+    margin-top:  10px;
 }
 .nav-bar .icon{
-    top: 50%;
-    left: 32px;
-    transform: translateY(4%);
-    font-size: 30px;
-    margin-top: 10%;
+    font-size: 28px;
     color: #FAF7F2;
+    margin-right: 12px;
+    transform: none;
+    position: relative;
+    top: auto;
+    left: auto;
     
 }
 .nav-bar .nav .dashboard{
@@ -67,40 +73,47 @@ body,html{
     text-decoration: none;
     font-size: 20px; 
 }
-.nav-bar .setting,
-.nav-bar .logout
+
+.nav-bar .nav-footer{
+    margin-top: auto;      
+    flex-direction: column;
+    gap: 8px;               
+    padding-bottom: 6px;
+}
+.nav-bar .nav-footer .setting,
+.nav-bar .nav-footer .logout
 {
-    margin: 10px 20px;
+    margin: 0;
+    padding: 15px 20px;
 }
 
-.nav-bar .setting a,
-.nav-bar .logout a
+.nav-bar .nav-footer .setting a,
+.nav-bar .nav-footer .logout a
 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    width: calc(100% - 40px); 
+    width: 100%;
     color: #132e42;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     background: #456882;
-    border-radius: 40px 0px 0px 0px;
-    padding: 1px 3px 2px 1px;
-    margin-left: 60px;
-    font-weight: 1000;
+    border-radius: 40px 0px 0px 40px;
+    padding: 12px 14px;
+    margin-left: 30px;
+    font-weight: 700;
     transition: background 0.3s;
+    justify-content: flex-start;
 }
 .nav-bar .setting a i,
 .nav-bar .logout a i{
-    top: 50%;
-    left: 32px;
-    transform: translateY(-40%);
-    font-size: 25px;
-    margin-top: 10%;
+    font-size: 22px;
     color: #132e42;
+    margin-right: 10px;
+    display: inline-block;
+    transform: none;
 }
-
 /* navigation bar ends */
 
 /* main content style */

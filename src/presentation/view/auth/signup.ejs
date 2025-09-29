@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/signup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Sign Up</title>
   <style>
@@ -33,15 +34,19 @@
           <input type="email" name="email" id="Email" placeholder="Enter your email">
           <div class="error" id="emailError"></div>
         </div>
+
         <div class="password-block">
           <i class="fa-solid fa-key icon"></i>
           <input type="password" name="password" id="password" placeholder="Enter your password">
           <div class="error" id="passwordError"></div>
+          <i class="fa-solid fa-eye toggle-eye" id="togglePassword"></i>
         </div>
+
         <div class="C-password-block">
           <i class="fa-solid fa-key icon"></i>
           <input type="password" id="C-password" placeholder="Confirm password">
           <div class="error" id="cpasswordError"></div>
+          <i class="fa-solid fa-eye toggle-eye" id="toggleCPassword"></i>
         </div>
         <button type="submit" class="btn-Sign-up">Sign up</button>
         <div id="serverMessage"></div>
@@ -119,6 +124,38 @@
         serverMessage.className = "error";
       }
     });
+  // Toggle password visibility (main password)
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
+
+togglePassword.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text"; // show password
+    togglePassword.classList.remove("fa-eye");
+    togglePassword.classList.add("fa-eye-slash");
+  } else {
+    passwordInput.type = "password"; // hide password
+    togglePassword.classList.remove("fa-eye-slash");
+    togglePassword.classList.add("fa-eye");
+  }
+});
+
+// Toggle confirm password visibility
+const toggleCPassword = document.getElementById("toggleCPassword");
+const cPasswordInput = document.getElementById("C-password");
+
+toggleCPassword.addEventListener("click", () => {
+  if (cPasswordInput.type === "password") {
+    cPasswordInput.type = "text"; // show confirm password
+    toggleCPassword.classList.remove("fa-eye");
+    toggleCPassword.classList.add("fa-eye-slash");
+  } else {
+    cPasswordInput.type = "password"; // hide confirm password
+    toggleCPassword.classList.remove("fa-eye-slash");
+    toggleCPassword.classList.add("fa-eye");
+  }
+});
+
   </script>
 </body>
 </html>
