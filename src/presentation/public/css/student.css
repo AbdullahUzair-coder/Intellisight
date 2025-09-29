@@ -131,6 +131,48 @@ body,html{
     font-size: 14px;
     color: #1B3C53;
 }
+.right .controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+}
+
+.right .controls .search-bar {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #cedcfe;
+    font-size: 14px;
+    outline: none;
+    color: #1B3C53;
+    background: #f0f4f8;
+    width: 220px;
+}
+
+.right .controls .search-bar input {
+    border: none;
+    outline: none;
+    padding: 8px;
+}
+/* .right .controls .search-bar i {
+    color: #456882;
+    cursor: pointer;
+} */
+
+.right .controls button {
+    justify-content: flex-end;
+    background:#456882;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.3s ease;
+}
 
 .right .table table{
     width: 100%;
@@ -162,9 +204,10 @@ body,html{
 }
 
 .right .page {
-    position: fixed;
+    position: relative;
+    margin-top: 20px;
     bottom: 20px;
-    left: 60%;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
@@ -209,5 +252,8 @@ body,html{
 
 .right .page button:hover{
     color: #456882;
+}
+.right .controls button:hover {
+    background: #2f4c65;
 }
 

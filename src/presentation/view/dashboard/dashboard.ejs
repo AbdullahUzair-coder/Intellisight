@@ -35,12 +35,16 @@
                 <a href="/logs"> Logs </a>
             </div>      
         </div>
+                    <!-- bottom group in sidebar -->
+        <div class="nav-footer">
             <div class="setting">
-                <a href="#"> <i class="fa-solid fa-gear icon"> </i> Settings  </a>                
+                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
             </div>
-            <div class="logout">                
-                <a href="/auth/login"><i class="fa-solid fa-arrow-right-from-bracket icon"></i> Log out  </a>               
+            <div class="logout">
+                <a href="/auth/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a>
             </div>
+        </div>
+
     </div>
     <!-- navbar ends here -->
 
@@ -56,72 +60,131 @@
         <div class="cards">
             <!-- students in department -->
             <div class="card">
-                <div class="number">
-                    <p> 0 </p>
+                <div class="card-info">
+                    <div class="number">
+                        <p>0</p>
+                    </div>
+                    <div class="name">
+                        <p>Students in Department</p>
+                    </div>
                 </div>
                 <div class="icons">
-                    <i class="fa-solid fa-user-group icon"></i>
-                </div>
-                <div class="name">
-                    <p> Students in Department </p>
+                <i class="fa-solid fa-user-group"></i>
                 </div>
             </div>
+
             <!-- teachers in department -->
             <div class="card">
-                <div class="number">
-                    <p> 0 </p>
+                <div class="card-info">
+                    <div class="number">
+                        <p>0</p>
+                    </div>
+                    <div class="name">
+                        <p>Teachers in Department</p>
+                    </div>
                 </div>
                 <div class="icons">
-                    <i class="fa-solid fa-graduation-cap icon"></i>
-                </div>
-                <div class="name">
-                    <p> Teachers in Department </p>
+                <i class="fa-solid fa-graduation-cap icon"></i>
                 </div>
             </div>
             <!-- unidentified person in department -->
             <div class="card">
-                <div class="number">
-                    <p> 0 </p>
+                <div class="card-info">
+                    <div class="number">
+                        <p>0</p>
+                    </div>
+                    <div class="name">
+                        <p>Unidentified Person</p>
+                    </div>
                 </div>
                 <div class="icons">
-                    <i class="fa-solid fa-user-xmark"></i>
-                </div>
-                <div class="name">
-                    <p> Unidentified Person </p>
+                <i class="fa-solid fa-user-xmark"></i>
                 </div>
             </div>
             <!-- active zones -->
             <div class="card">
-                <div class="number">
-                    <p> 0 </p>
+                <div class="card-info">
+                    <div class="number">
+                        <p>0</p>
+                    </div>
+                    <div class="name">
+                        <p>Active zones</p>
+                    </div>
                 </div>
                 <div class="icons">
-                    <i class="fa-solid fa-location-dot icon"></i>
-                </div>
-                <div class="name">
-                    <p> Active zones </p>
+                <i class="fa-solid fa-location-dot icon"></i>
                 </div>
             </div>
         </div>
         <div class="below">
         <div class="recent-activity">
-        <h2>Recent Activity </h2>
-        <table class="recent">
-            <tr>
-                <th> Student Name </th>
-                <th> Zone </th>
-                <th> Entry Time </th>
-                <th> Exit Time </th>
-            </tr>
-        </table>
+            <h2>Recent Activity</h2>
+            <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Zone</th>
+                    <th>Entry Time</th>
+                    <th>Exit Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>zainab moazzam</td>
+                    <td>Lab 1</td>
+                    <td>09:00 AM</td>
+                    <td>10:30 AM</td>
+                </tr>
+                <tr>
+                    <td>abdullah ozair</td>
+                    <td>Library</td>
+                    <td>09:15 AM</td>
+                    <td>11:00 AM</td>
+                </tr>
+                <tr>
+                    <td>zeeshan haider</td>
+                    <td>Classroom 3</td>
+                    <td>10:00 AM</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>student 4</td>
+                    <td>Lab 2</td>
+                    <td>10:30 AM</td>
+                    <td>--</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
         </div>
         <div class="zone-overview">
         <h2>Zone Overview</h2>
         <table class="z-overview">
+            <thead>
             <tr>
                 <th> Zone Name </th>
                 <th> Active Students </th>
             </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> Zone 1 </td>
+                <td> 3 </td>
+            </tr>
+            <tr>
+                <td> Zone 2 </td>
+                <td> 4 </td>
+            </tr>
+            <tr>
+                <td> Zone 3 </td>
+                <td> 5 </td>
+            </tr>
+            <tr>
+                <td> Zone 4 </td>
+                <td> 6</td>
+            </tr>
+            </tbody>
         </table>
         </div>
         </div>
@@ -132,7 +195,7 @@
         </div>
         <div class="actions">
             <div class="row">
-            <button> Add Students </button>
+            <button> Add Persons </button>
             <button> Add Zones </button>
             </div>
             <div class="chk-unknown">
