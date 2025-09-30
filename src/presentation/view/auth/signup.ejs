@@ -91,6 +91,9 @@
       if (password === "") {
         document.getElementById("passwordError").textContent = "Password is required.";
         valid = false;
+      }else if (password.length < 8 || password.length > 16) {
+        document.getElementById("passwordError").textContent = "Password must be between 8 and 16 characters.";
+        valid = false;
       }
       if (cpassword === "") {
         document.getElementById("cpasswordError").textContent = "Please confirm your password.";
