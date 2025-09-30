@@ -1,46 +1,60 @@
+
 body {
-    background-color: #1B3C53; /* dark blue */
-    color: white;
+    background: linear-gradient(-45deg, #0D1B2A, #1B3C53, #274C77);
+    background-size: 400% 400%;
+    animation: gradientBG 35s ease infinite;
+    color: #F8F2EE;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+
+}
+
 h2 {
     font-weight: bold;
     font-size: 45px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 .logo {
-    width: 400px;
+    width: 600px;
     margin-top: -120px;
-    margin-bottom: -150px;
+    margin-bottom: -200px;
     padding-left: 38px;
 }
 p {
     color: #D2C1B6;
     font-weight: bold;
     font-size: 25px;
-    margin-top: 5px;
 }
 button {
+
     background-color: #F8F2EE;
     color: #18344a;
     border: none;
-    padding: 12px 40px;
+    padding: 16px 50px;
     margin-top: 25px;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: all 0.4s ease;
 }
+
 button:hover {
-    background-color: #e6e6e6;
+    background: linear-gradient(90deg, #4d6372, #c4c6c8, #adb5d7);
+    color: #18344a;
+    transform: scale(1.05); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 a {
     text-decoration: none;
