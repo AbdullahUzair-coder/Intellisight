@@ -68,13 +68,77 @@ export const dashboardData = async (req, res) => {
   }
 };
 
+
+  
+  export const getStudentLogs = async (req, res) => {
+  try {
+    const result = await db.query(`
+      SELECT sl.id, sl.entry_time, sl.exit_time, z.name
+      FROM student_logs sl
+      JOIN zones z ON sl.zone_id = z.id
+      ORDER BY sl.entry_time DESC
+    `);
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching student logs:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+export const getStudentLogsById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await db.query(`
+      SELECT sl.id, sl.entry_time, sl.exit_time, z.name
+      FROM student_logs sl
+      JOIN zones z ON sl.zone_id = z.id
+      WHERE sl.id = $1
+      ORDER BY sl.entry_time DESC
+    `, [id]);
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching student logs by ID:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+  export const getTeacherLogs = async (req, res) => {
+  try {
+    const result = await db.query(`
+      SELECT sl.id, sl.entry_time, sl.exit_time, z.name
+      FROM teacher_logs sl
+      JOIN zones z ON sl.zone_id = z.id
+      ORDER BY sl.entry_time DESC
+    `);
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching student logs:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+export const getTeacherLogsById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await db.query(`
+      SELECT sl.id, sl.entry_time, sl.exit_time, z.name
+      FROM teacher_logs sl
+      JOIN zones z ON sl.zone_id = z.id
+      WHERE sl.id = $1
+      ORDER BY sl.entry_time DESC
+    `, [id]);
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching student logs by ID:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 export const dashboardpage = (req, res) => {
   res.render("dashboard/dashboard");
 };
   export const studentsPage = (req, res) => {
     res.render("students/student");
   };
-  
   export const teachersPage = (req, res) => {
     res.render("teachers/teachers");
   };
