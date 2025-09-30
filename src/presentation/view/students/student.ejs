@@ -11,16 +11,17 @@
 
 </head>
 <body>
+    <!-- navbar starts here -->
     <div class="nav-bar">        
         <img class="logo" src="/images/intellisight1.png" />
         <div class="nav">
-            <<div class="dashboard">
+            <div class="dashboard">
                 <i  class="fa-solid fa-house-user icon"></i>
-                <a href="/dashboard" > Dashboard </a>
+                <a href="/dashboard" class="active" > Dashboard </a>
             </div>
             <div class="students">
                 <i class="fa-solid fa-user-group icon"></i>
-                <a href="/students" class="active"> Students </a>
+                <a href="/students"> Students </a>
             </div>
             <div class="teachers">
                 <i class="fa-solid fa-graduation-cap icon"></i>
@@ -28,19 +29,22 @@
             </div>
             <div class="zones">
                 <i class="fa-solid fa-location-dot icon"></i>
-                <a href="/zones"> Zones </a>
+                <a href="/zones">   Zones </a>
             </div>
             <div class="logs">
                 <i class="fa-solid fa-bars icon"></i>
                 <a href="/logs"> Logs </a>
-            </div>        
+            </div>      
         </div>
+        <div class="nav-footer">
             <div class="setting">
-                <a href="#"> <i class="fa-solid fa-gear icon"> </i> Settings  </a>                
+                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
             </div>
+
             <div class="logout">                
                 <a href="/login"><i class="fa-solid fa-arrow-right-from-bracket icon"></i> Log out  </a>               
             </div>
+        </div>
     </div>
     <!-- navbar ends here -->
 
@@ -55,7 +59,11 @@
             <option> Monthly </option>
         </select>
     </div>
-
+    <div class="controls">
+        <input type="number" placeholder=" Search by ID"  class="search-bar">
+        <button class="add-student">Add Student</button>
+        <button class="manage-student">Manage Students</button>
+    </div>
     <div class="table">
         <table>
             <thead>
@@ -79,11 +87,42 @@
                 <td> -- </td>
                 <td> -- </td>
             </tr>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+            <tr>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+                <td> -- </td>
+            </tr>
+
             </tbody>
         </table>
     </div>
     <div class="page">
-        <span>page 1/2</span>
+        <span>page 1/1</span>
         <button>&lt;</button>
         <button>&gt;</button>
     </div> 

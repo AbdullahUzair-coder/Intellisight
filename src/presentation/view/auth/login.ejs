@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Login</title>
 </head>
@@ -19,6 +20,7 @@
         <div class="password-block">
           <i class="fa-solid fa-key icon"></i>
           <input type="password" id="password" placeholder="Enter your password" name="password" required>
+          <i class="fa-solid fa-eye toggle-eye" id="togglePassword"></i>
         </div>
 
         <button type="submit" class="btn-login">LOGIN</button>
@@ -53,7 +55,7 @@
         const data = await res.json();
 
         if (res.ok) {
-          // ✅ Store tokens in localStorage
+          // Store tokens in localStorage
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
 
@@ -65,6 +67,21 @@
       } catch (err) {
         console.error("Error logging in:", err);
         alert("Something went wrong.");
+      }
+    });
+    // Toggle password visibility
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePassword.addEventListener("click", () => {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text"; // show password
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password"; // hide password
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
       }
     });
   </script>
