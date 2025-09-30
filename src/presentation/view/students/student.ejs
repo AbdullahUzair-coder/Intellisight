@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <title>Students</title>
-
 </head>
 <body>
     <!-- navbar starts here -->
@@ -17,11 +16,11 @@
         <div class="nav">
             <div class="dashboard">
                 <i  class="fa-solid fa-house-user icon"></i>
-                <a href="/dashboard" class="active" > Dashboard </a>
+                <a href="/dashboard"> Dashboard </a>
             </div>
             <div class="students">
                 <i class="fa-solid fa-user-group icon"></i>
-                <a href="/students"> Students </a>
+                <a href="/students" class="active"> Students </a>
             </div>
             <div class="teachers">
                 <i class="fa-solid fa-graduation-cap icon"></i>
@@ -29,7 +28,7 @@
             </div>
             <div class="zones">
                 <i class="fa-solid fa-location-dot icon"></i>
-                <a href="/zones">   Zones </a>
+                <a href="/zones"> Zones </a>
             </div>
             <div class="logs">
                 <i class="fa-solid fa-bars icon"></i>
@@ -40,93 +39,103 @@
             <div class="setting">
                 <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
             </div>
-
             <div class="logout">                
-                <a href="/login"><i class="fa-solid fa-arrow-right-from-bracket icon"></i> Log out  </a>               
+                <a href="/login"><i class="fa-solid fa-arrow-right-from-bracket icon"></i> Log out </a>               
             </div>
         </div>
     </div>
     <!-- navbar ends here -->
 
-<!-- main content starts here -->
-<div class="right">
-    <div class="top-bar">
-        <h1> Students </h1>
-        <select>
-            <option> Select </option>
-            <option> Today </option>
-            <option> Weekly </option>
-            <option> Monthly </option>
-        </select>
-    </div>
-    <div class="controls">
-        <input type="number" placeholder=" Search by ID"  class="search-bar">
-        <button class="add-student">Add Student</button>
-        <button class="manage-student">Manage Students</button>
-    </div>
-    <div class="table">
-        <table>
-            <thead>
-            <tr>
-                <th> ID </th>
-                <th> Entry Time </th>
-                <th> Exit Time </th>
-                <th> Zone </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
+    <!-- main content starts here -->
+    <div class="right">
+        <div class="top-bar">
+            <h1> Students </h1>
+            <select>
+                <option> Select </option>
+                <option> Today </option>
+                <option> Weekly </option>
+                <option> Monthly </option>
+            </select>
+        </div>
 
-            </tbody>
-        </table>
+        <div class="controls">
+            <input type="number" placeholder=" Search by ID" class="search-bar">
+            <button class="Add-Student">Add Teacher</button>
+            <button class="Manage-Teacher">Manage Teacher</button>
+        </div>
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Entry Time </th>
+                        <th> Exit Time </th>
+                        <th> Zone </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be loaded -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page">
+            <span>page 1/1</span>
+            <button>&lt;</button>
+            <button>&gt;</button>
+        </div> 
     </div>
-    <div class="page">
-        <span>page 1/1</span>
-        <button>&lt;</button>
-        <button>&gt;</button>
-    </div> 
-</div>
+    <!-- main content ends here -->
+
+    <!-- script for fetching logs -->
+    <script>
+        async function loadLogs() {
+            const res = await fetch("/api/student-logs");
+            const logs = await res.json();
+            const tbody = document.querySelector("table tbody");
+            tbody.innerHTML = ""; // clear old rows
+
+            logs.forEach(log => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${log.id}</td>
+                    <td>${log.entry_time || '--'}</td>
+                    <td>${log.exit_time || '--'}</td>
+                    <td>${log.zone_name || '--'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Search by ID
+        document.querySelector(".search-bar").addEventListener("input", async (e) => {
+            const id = e.target.value;
+            const tbody = document.querySelector("table tbody");
+
+            if (id === "") {
+                loadLogs(); // reset table
+                return;
+            }
+
+            const res = await fetch(`/api/student-logs/${id}`);
+            const logs = await res.json();
+
+            tbody.innerHTML = "";
+            logs.forEach(log => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${log.id}</td>
+                    <td>${log.entry_time || '--'}</td>
+                    <td>${log.exit_time || '--'}</td>
+                    <td>${log.zone_name || '--'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        });
+
+        // Load data on page start
+        loadLogs();
+    </script>
 </body>
 </html>
-<!-- main content ends here -->

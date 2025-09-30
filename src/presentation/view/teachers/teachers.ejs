@@ -75,18 +75,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
-            <tr>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-                <td> -- </td>
-            </tr>
+
             </tbody>
         </table>
     </div>
@@ -99,3 +88,54 @@
 </body>
 </html>
 <!-- main content ends here -->
+
+<script>
+        async function loadLogs() {
+            const res = await fetch("/api/teacher-logs");
+            const logs = await res.json();
+            const tbody = document.querySelector("table tbody");
+            tbody.innerHTML = ""; // clear old rows
+
+            logs.forEach(log => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${log.id}</td>
+                    <td>${log.entry_time || '--'}</td>
+                    <td>${log.exit_time || '--'}</td>
+                    <td>${log.zone_name || '--'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Search by ID
+        document.querySelector(".search-bar").addEventListener("input", async (e) => {
+            const id = e.target.value;
+            const tbody = document.querySelector("table tbody");
+
+            if (id === "") {
+                loadLogs(); // reset table
+                return;
+            }
+
+            const res = await fetch(`/api/teacher-logs/${id}`);
+            const logs = await res.json();
+
+            tbody.innerHTML = "";
+            logs.forEach(log => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${log.id}</td>
+                    <td>${log.entry_time || '--'}</td>
+                    <td>${log.exit_time || '--'}</td>
+                    <td>${log.zone_name || '--'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        });
+
+        // Load data on page start
+        loadLogs();
+    </script>
+</body>
+</html>
