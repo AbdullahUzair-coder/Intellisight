@@ -6,9 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <title>Dashboard</title>
-
 </head>
 <body>
     <!-- navbar starts here -->
@@ -36,12 +34,11 @@
                 <a href="/logs"> Logs </a>
             </div>      
         </div>
-                    <!-- bottom group in sidebar -->
+        <!-- bottom group in sidebar -->
         <div class="nav-footer">
             <div class="setting">
                 <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
             </div>
-
             <div class="logout">                
                 <a href="/login"><i class="fa-solid fa-arrow-right-from-bracket icon"></i> Log out  </a>               
             </div>
@@ -63,14 +60,14 @@
             <div class="card">
                 <div class="card-info">
                     <div class="number">
-                        <p>0</p>
+                        <p id="studentCount">0</p>
                     </div>
                     <div class="name">
                         <p>Students in Department</p>
                     </div>
                 </div>
                 <div class="icons">
-                <i class="fa-solid fa-user-group"></i>
+                    <i class="fa-solid fa-user-group"></i>
                 </div>
             </div>
 
@@ -78,135 +75,154 @@
             <div class="card">
                 <div class="card-info">
                     <div class="number">
-                        <p>0</p>
+                        <p id="teacherCount">0</p>
                     </div>
                     <div class="name">
                         <p>Teachers in Department</p>
                     </div>
                 </div>
                 <div class="icons">
-                <i class="fa-solid fa-graduation-cap icon"></i>
+                    <i class="fa-solid fa-graduation-cap icon"></i>
                 </div>
             </div>
+
             <!-- unidentified person in department -->
             <div class="card">
                 <div class="card-info">
                     <div class="number">
-                        <p>0</p>
+                        <p id="unidentifiedCount">0</p>
                     </div>
                     <div class="name">
                         <p>Unidentified Person</p>
                     </div>
                 </div>
                 <div class="icons">
-                <i class="fa-solid fa-user-xmark"></i>
+                    <i class="fa-solid fa-user-xmark"></i>
                 </div>
             </div>
+
             <!-- active zones -->
             <div class="card">
                 <div class="card-info">
                     <div class="number">
-                        <p>0</p>
+                        <p id="zoneCount">0</p>
                     </div>
                     <div class="name">
                         <p>Active zones</p>
                     </div>
                 </div>
                 <div class="icons">
-                <i class="fa-solid fa-location-dot icon"></i>
+                    <i class="fa-solid fa-location-dot icon"></i>
                 </div>
             </div>
         </div>
+
         <div class="below">
-        <div class="recent-activity">
-            <h2>Recent Activity</h2>
-            <div class="table-wrap">
-            <table>
-                <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Zone</th>
-                    <th>Entry Time</th>
-                    <th>Exit Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>zainab moazzam</td>
-                    <td>Lab 1</td>
-                    <td>09:00 AM</td>
-                    <td>10:30 AM</td>
-                </tr>
-                <tr>
-                    <td>abdullah ozair</td>
-                    <td>Library</td>
-                    <td>09:15 AM</td>
-                    <td>11:00 AM</td>
-                </tr>
-                <tr>
-                    <td>zeeshan haider</td>
-                    <td>Classroom 3</td>
-                    <td>10:00 AM</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>student 4</td>
-                    <td>Lab 2</td>
-                    <td>10:30 AM</td>
-                    <td>--</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Zone</th>
+                                <th>Entry Time</th>
+                                <th>Exit Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentActivity">
+                            <!-- Filled dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="zone-overview">
+                <h2>Zone Overview</h2>
+                <table class="z-overview">
+                    <thead>
+                        <tr>
+                            <th> Zone Name </th>
+                            <th> Active Students </th>
+                        </tr>
+                    </thead>
+                    <tbody id="zoneOverview">
+                        <!-- Filled dynamically -->
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="zone-overview">
-        <h2>Zone Overview</h2>
-        <table class="z-overview">
-            <thead>
-            <tr>
-                <th> Zone Name </th>
-                <th> Active Students </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td> Zone 1 </td>
-                <td> 3 </td>
-            </tr>
-            <tr>
-                <td> Zone 2 </td>
-                <td> 4 </td>
-            </tr>
-            <tr>
-                <td> Zone 3 </td>
-                <td> 5 </td>
-            </tr>
-            <tr>
-                <td> Zone 4 </td>
-                <td> 6</td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-        </div>
+
         <div class="graph-buttons">
-        <div class="graph">
-            <h2>Peak Hours </h2>
-            <p> graph will show here</p>
-        </div>
-        <div class="actions">
-            <div class="row">
-            <button> Add Persons </button>
-            <button> Add Zones </button>
+            <div class="graph">
+                <h2>Peak Hours </h2>
+                <p> graph will show here</p>
             </div>
-            <div class="chk-unknown">
-            <button> Check Unidentified persons </button>
+            <div class="actions">
+                <div class="row">
+                    <button> Add Persons </button>
+                    <button> Add Zones </button>
+                </div>
+                <div class="chk-unknown">
+                    <button> Check Unidentified persons </button>
+                </div>
+                <div class="gen-rep">
+                    <button> Generate Report </button>
+                </div>
             </div>
-            <div class="gen-rep">
-            <button> Generate Report </button>
-            </div>
-        </div>
         </div>
     </div>
+
+    <script>
+        async function loadDashboard() {
+            try {
+                const token = localStorage.getItem("accessToken");
+                const res = await fetch("/api/dashboard", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.error || "Failed to load dashboard");
+                    return;
+                }
+
+                // Update counts
+                document.getElementById("studentCount").innerText = data.stats.students;
+                document.getElementById("teacherCount").innerText = data.stats.teachers;
+                document.getElementById("unidentifiedCount").innerText = data.stats.unidentified;
+                document.getElementById("zoneCount").innerText = data.stats.zones;
+
+                // Recent activity
+                const raTable = document.getElementById("recentActivity");
+                raTable.innerHTML = "";
+                data.recentActivity.forEach(log => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${log.student_name}</td>
+                        <td>${log.zone_name}</td>
+                        <td>${new Date(log.entry_time).toLocaleString()}</td>
+                        <td>${log.exit_time ? new Date(log.exit_time).toLocaleString() : "--"}</td>
+                    `;
+                    raTable.appendChild(tr);
+                });
+
+                // Zone overview
+                const zoTable = document.getElementById("zoneOverview");
+                zoTable.innerHTML = "";
+                data.zoneOverview.forEach(zone => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `<td>${zone.zone_name}</td><td>${zone.active_students}</td>`;
+                    zoTable.appendChild(tr);
+                });
+
+            } catch (err) {
+                console.error("Dashboard load error:", err);
+                alert("Error loading dashboard");
+            }
+        }
+
+        loadDashboard();
+    </script>
 </body>
 </html>

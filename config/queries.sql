@@ -1,6 +1,6 @@
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
-name varchar(100) NOT NULL,
+name VARCHAR(100),
 email VARCHAR(100) NOT NULL UNIQUE,
 password VARCHAR(100)
 )
@@ -10,7 +10,8 @@ CREATE TABLE students (
     name VARCHAR(100) NOT NULL,
     roll_no VARCHAR(50) UNIQUE,
     email VARCHAR(100) UNIQUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    image_url TEXT
 );
 
 CREATE TABLE teachers (
@@ -18,7 +19,8 @@ CREATE TABLE teachers (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
     department VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    image_url TEXT
 );
 
 CREATE TABLE zones (
