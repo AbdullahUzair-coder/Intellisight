@@ -28,7 +28,10 @@ export const resetpassword= (req, res) => {
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
-
+  //  Password length check
+  if (!password || password.length < 8 || password.length > 16) {
+    return res.status(400).json({ success: false, message: "Password must be between 8 and 16 characters long." });
+  }
   try {
     // check if already exists
     const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [email]);
@@ -67,7 +70,7 @@ export const register = async (req, res) => {
       `
     });
 
-    res.json({ success: true, message: "Signup request sent. Awaiting admin approval." });
+    res.json({ success: true, message: "Signup request sent. Awaiting admin approval.Check your Email" });
 
   } catch (err) {
     console.error(err);
@@ -151,10 +154,10 @@ export const login = async (req, res) => {
           console.error("Error comparing passwords:", err);
         } else {
           if (isMatch) {
-            // ✅ Issue tokens
+            //  Issue tokens
             console.log(user.id);
             console.log(user.email);
-            const accessToken = jwt.sign({ id: user.id, email: user.email }, "access_secret", { expiresIn: "15m" });
+            const accessToken = jwt.sign({ id: user.id, email: user.email }, "access_secret", { expiresIn: "12h" });
             const refreshToken = jwt.sign({ id: user.id, email: user.email }, "refresh_secret", { expiresIn: "1d" });
             console.log(accessToken);
             console.log(refreshToken);
@@ -210,48 +213,75 @@ export const logout = (req, res) => {
   refreshTokens = refreshTokens.filter(t => t !== token);
   res.json({ message: "Logged out successfully" });
 };
+export const forgotpassword = async (req, res) => {
+  const email = req.body.email;
 
-export const forgotpassword = async (req, res)=>{
-    const email = req.body.email;
+  try {
+    const user = await db.query("SELECT * FROM users WHERE email = $1", [email]);
+    if (user.rows.length === 0) {
+      return res.status(404).json({ success: false, message: "Email not found" });
+    }
 
-    try{
-        const user = await db.query("SELECT * FROM users WHERE email = $1", [email]);
-        if(user.rows.length === 0){
-            return res.status(404).json({success: false , message: "Email not found"})
-        }
+    const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10m" });
 
-        const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10m" });
+    const resetLink = `http://localhost:4000/reset-password/${token}`;
 
-        const resetLink = `http://localhost:4000/reset-password/${token}`;
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "221083@students.au.edu.pk",
+        pass: "afag ijik emzq blqo" // ⚠️ make sure to use app password, not real one
+      }
+    });
 
-        const transporter = nodemailer.createTransport({
-            service:"gmail",
-            auth:{
-                user:"221083@students.au.edu.pk",
-                pass:"afag ijik emzq blqo"
-            }
-        });
+    await transporter.sendMail({
+      from: "221083@students.au.edu.pk",
+      to: email,
+      subject: "Password Reset - IntelliSight",
+      html: `
+        <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 30px;">
+          <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="background-color: #1B3C53; padding: 20px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">IntelliSight</h1>
+            </div>
+            <div style="padding: 30px; color: #333333; font-size: 16px; line-height: 1.5;">
+              <p>Hi,</p>
+              <p>We received a request to reset your password. Click the button below to reset it. 
+              The link is valid for <strong>15 minutes</strong>.</p>
 
-        await transporter.sendMail({
-            from:"221083@students.au.edu.pk",
-            to:email,
-            subject: "Password Reset",
-            html: `<p>Click <a href="${resetLink}">here</a> to reset your password. Link valid for 15 minutes.</p>`
-        });
-        res.json({ success: true, message: "Password reset email sent" });
-    }catch (err) {
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="${resetLink}" 
+                  style="background-color: #1B3C53; color: #ffffff; padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block;">
+                  Reset Password
+                </a>
+              </div>
+
+              <p>If you didn’t request this, you can safely ignore this email.</p>
+              <p style="margin-top: 20px;">Thanks,<br>The IntelliSight Team</p>
+            </div>
+            <div style="background-color: #f1f1f1; padding: 10px; text-align: center; font-size: 12px; color: #888888;">
+              © 2025 IntelliSight. All rights reserved.
+            </div>
+          </div>
+        </div>
+      `
+    });
+
+    res.json({ success: true, message: "Password reset email sent" });
+  } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: "Server error" });
   }
-
-
 };
-
 
 export const resetPassword = async (req, res) => {
   const { token } = req.params;
   const newPassword = req.body.password;
-
+  
+  //  Password length check
+  if (!newPassword || newPassword.length < 8 || newPassword.length > 16) {
+    return res.status(400).json({ success: false, message: "Password must be between 8 and 16 characters long." });
+  }
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
